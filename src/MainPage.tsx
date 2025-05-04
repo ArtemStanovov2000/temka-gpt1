@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
+import { baseText } from "./data/text/harry";
 
 const useStyles = createUseStyles({
     page: {
@@ -36,6 +37,8 @@ const useStyles = createUseStyles({
         },
     },
 });
+
+console.log(baseText)
 
 export const MainPage: FC = () => {
     const classes = useStyles()
