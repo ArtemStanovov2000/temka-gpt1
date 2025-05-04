@@ -1,9 +1,9 @@
-import { embeddings } from "./data/embeddings"
+import MainPage from "./MainPage"
 
 function App() {
-  console.log(embeddings)
   return (
     <div>
+      <MainPage/>
     </div>
   )
 }
