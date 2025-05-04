@@ -1,8 +1,5 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
-import { harry } from "./data/text/harry";
-
-console.log(harry.length)
 
 const useStyles = createUseStyles({
     page: {
