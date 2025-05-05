@@ -1,6 +1,13 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
 import { baseText } from "./data/text/harry";
+import { cleaningText } from "./utils/cleanSymbol";
+import { splitText } from "./utils/splitText";
+import { removeDuplicateWords, removeDuplicateWordsWithout_ } from "./utils/removeDuplicateWords";
+import { cleanEnding } from "./utils/cleanEnding";
+import array from "./data/vocab/vocab.json"
+
+console.log(JSON.stringify(removeDuplicateWords(cleanEnding(array))))
 
 const useStyles = createUseStyles({
     page: {
@@ -38,8 +45,6 @@ const useStyles = createUseStyles({
     },
 });
 
-console.log(baseText)
-
 export const MainPage: FC = () => {
     const classes = useStyles()
     const [text, setText] = useState("");
@@ -50,7 +55,7 @@ export const MainPage: FC = () => {
 
     const postText = () => {
         setText(text.toLowerCase())
-        console.log(JSON.stringify(text))
+        console.log(JSON.stringify(splitText(cleaningText(text))))
     }
 
     return (
@@ -59,6 +64,7 @@ export const MainPage: FC = () => {
                 <input onInput={inputText} value={text} placeholder="text" className={classes.input} />
                 <button onClick={postText} className={classes.button}>Ввод</button>
             </div>
+            <p>{text}</p>
         </div>
     )
 }
