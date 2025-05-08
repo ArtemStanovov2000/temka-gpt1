@@ -1,29 +1,14 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
+import { tokenizationText } from "./utils/tokenizator";
+import { example } from "./data/text/example";
 import { cleaningText } from "./utils/cleanSymbol";
 import { splitText } from "./utils/splitText";
+import { add_ } from "./utils/removeDuplicateWords";
 import { vocab } from "./data/vocab/vocab";
-import { example } from "./data/text/example";
-import { replaceTokenByCode } from "./utils/createChar";
-import { splitCodedText, replaceCodeByTokenIndex } from "./utils/createChar";
-import { summValue } from "./utils/createChar";
+import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 
-
-const replaceSpaces = (str: string) => str.replace(/\s/g, '_');  
-
-function tokenizator(text: string, searchWord: string, replaceWord: string) {
-    const regex = new RegExp(searchWord, 'g');
-    return text.replace(regex, replaceWord);
-}
-
-let tokens = example.toLocaleLowerCase()
-tokens = replaceSpaces(tokens)
-for (let i = 0; i < vocab.length; i++) {
-    tokens = tokenizator(tokens, vocab[i], replaceTokenByCode(i))
-}
-
-console.log(tokens)
-console.log(vocab[replaceCodeByTokenIndex("bnnl")])
+console.log(embeddingMatrix)
 
 const useStyles = createUseStyles({
     page: {
@@ -71,7 +56,7 @@ export const MainPage: FC = () => {
 
     const postText = () => {
         setText(text.toLowerCase())
-        //console.log(JSON.stringify(splitText(cleaningText(text))))
+        console.log(JSON.stringify(add_(splitText(cleaningText(text)))))
     }
 
     return (
