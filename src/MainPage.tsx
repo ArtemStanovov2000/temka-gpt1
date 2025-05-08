@@ -1,13 +1,29 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
-import { baseText } from "./data/text/harry";
 import { cleaningText } from "./utils/cleanSymbol";
 import { splitText } from "./utils/splitText";
-import { removeDuplicateWords, removeDuplicateWordsWithout_ } from "./utils/removeDuplicateWords";
-import { cleanEnding } from "./utils/cleanEnding";
-import array from "./data/vocab/vocab.json"
+import { vocab } from "./data/vocab/vocab";
+import { example } from "./data/text/example";
+import { replaceTokenByCode } from "./utils/createChar";
+import { splitCodedText, replaceCodeByTokenIndex } from "./utils/createChar";
+import { summValue } from "./utils/createChar";
 
-console.log(JSON.stringify(removeDuplicateWords(cleanEnding(array))))
+
+const replaceSpaces = (str: string) => str.replace(/\s/g, '_');  
+
+function tokenizator(text: string, searchWord: string, replaceWord: string) {
+    const regex = new RegExp(searchWord, 'g');
+    return text.replace(regex, replaceWord);
+}
+
+let tokens = example.toLocaleLowerCase()
+tokens = replaceSpaces(tokens)
+for (let i = 0; i < vocab.length; i++) {
+    tokens = tokenizator(tokens, vocab[i], replaceTokenByCode(i))
+}
+
+console.log(tokens)
+console.log(vocab[replaceCodeByTokenIndex("bnnl")])
 
 const useStyles = createUseStyles({
     page: {
@@ -55,7 +71,7 @@ export const MainPage: FC = () => {
 
     const postText = () => {
         setText(text.toLowerCase())
-        console.log(JSON.stringify(splitText(cleaningText(text))))
+        //console.log(JSON.stringify(splitText(cleaningText(text))))
     }
 
     return (
