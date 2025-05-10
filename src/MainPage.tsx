@@ -1,14 +1,14 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
 import { tokenizationText } from "./utils/tokenizator";
-import { example } from "./data/text/example";
 import { cleaningText } from "./utils/cleanSymbol";
 import { splitText } from "./utils/splitText";
 import { add_ } from "./utils/removeDuplicateWords";
-import { vocab } from "./data/vocab/vocab";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
+import { positionMatrix } from "./data/matrix/positionMatrix";
+import { W_K_4layer } from "./data/matrix/layer_4/W_K_4layer";
 
-console.log(embeddingMatrix)
+console.log(W_K_4layer)
 
 const useStyles = createUseStyles({
     page: {
