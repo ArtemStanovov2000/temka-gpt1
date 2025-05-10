@@ -6,9 +6,18 @@ import { splitText } from "./utils/splitText";
 import { add_ } from "./utils/removeDuplicateWords";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 import { positionMatrix } from "./data/matrix/positionMatrix";
-import { W_K_4layer } from "./data/matrix/layer_4/W_K_4layer";
 
-console.log(W_K_4layer)
+//console.log(W_Q_1layer)
+
+const matrix = []
+for (let i = 0; i < 128; i++) {
+    const row = []
+    for (let j = 0; j < 128; j++) {
+        row.push(Math.random() * 0.1 - 0.05)
+    }
+    matrix.push(row)
+}
+console.log(JSON.stringify(matrix))
 
 const useStyles = createUseStyles({
     page: {
