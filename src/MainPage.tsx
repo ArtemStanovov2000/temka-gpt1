@@ -6,61 +6,19 @@ import { splitText } from "./utils/splitText";
 import { add_ } from "./utils/removeDuplicateWords";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 import { positionMatrix } from "./data/matrix/positionMatrix";
+import { W_Q_1layer } from "./data/matrix/layer_1/W_Q_1layer";
 
 
-const embeddings: number[][] = []
-for (let i = 0; i < 128; i++) {
-    const row = []
-    for (let j = 0; j < 3; j++) {
-        row.push(Math.random())
-    }
-    embeddings.push(row)
-}
+const text = [
+    [-0.92, -0.78, 0.98, 0.04, -0.21, -0.22],
+    [0.15, -0.74, 0.58, 0.09, -0.25, -0.95],
+    [0.9, 0.57, -0.13, 0.2, 0.9, 0.62]
+]
 
-
-// Матрица Wq для одной головы: 128 строк × 8 столбцов
-const Wq: number[][] = []
-for (let i = 0; i < 128; i++) {
-    const row = []
-    for (let j = 0; j < 8; j++) {
-        row.push(Math.random())
-    }
-    Wq.push(row)
-}
-
-// 2. Умножение Wq^T (8x128) × embeddings (128x3) = 8x3
-function multiplyMatrices(aTransposed: number[][], b: number[][]) {
-    const rowsA = aTransposed.length;    // 8
-    const colsB = b[0].length;           // 3
-    const result = Array(rowsA).fill().map(() => Array(colsB).fill(0));
-
-    for (let i = 0; i < rowsA; i++) {
-        for (let j = 0; j < colsB; j++) {
-            for (let k = 0; k < b.length; k++) {  // 128
-                result[i][j] += aTransposed[i][k] * b[k][j];
-            }
-        }
-    }
-    return result;
-}
-
-// Транспонируем Wq для правильного порядка умножения (8x128)
-const WqTransposed = Wq[0].map((_, i) => Wq.map(row => row[i]));
-
-// Результат: матрица 8x3 (8 фич × 3 токена)
-const queries = multiplyMatrices(WqTransposed, embeddings);
-
-console.log(queries, "rr")
-
-
-
-
-
-
-
-
-
-
+const matrix = [
+    [-0.38, 0.29, -0.58, 0.86, 0.59, -0.4],
+    [0.3, 0.71, -0.05, -0.57, 0.83, 0.69] 
+]
 
 
 const useStyles = createUseStyles({
