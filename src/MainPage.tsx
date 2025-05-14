@@ -7,18 +7,10 @@ import { add_ } from "./utils/removeDuplicateWords";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 import { positionMatrix } from "./data/matrix/positionMatrix";
 import { W_Q_1layer } from "./data/matrix/layer_1/W_Q_1layer";
+import { calculateQueryMatrix } from "./data/attention/calculateQueryMatrix";
 
 
-const text = [
-    [-0.92, -0.78, 0.98, 0.04, -0.21, -0.22],
-    [0.15, -0.74, 0.58, 0.09, -0.25, -0.95],
-    [0.9, 0.57, -0.13, 0.2, 0.9, 0.62]
-]
-
-const matrix = [
-    [-0.38, 0.29, -0.58, 0.86, 0.59, -0.4],
-    [0.3, 0.71, -0.05, -0.57, 0.83, 0.69] 
-]
+console.log(calculateQueryMatrix(embeddingMatrix, W_Q_1layer, 8, 16))
 
 
 const useStyles = createUseStyles({
