@@ -7,11 +7,14 @@ import { add_ } from "./utils/removeDuplicateWords";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 import { positionMatrix } from "./data/matrix/positionMatrix";
 import { W_Q_1layer } from "./data/matrix/layer_1/W_Q_1layer";
-import { calculateQueryMatrix } from "./data/attention/calculateQueryMatrix";
+import { W_K_1layer } from "./data/matrix/layer_1/W_K_1layer";
+import { calculateOneHeadW_QKV_Matrix } from "./data/attention/calculateQueryMatrix";
+import { transposeMatrix } from "./data/attention/transposeMatrix";
+import { calculateAttentionMatrix } from "./data/attention/calculateAttentionMatrix";
 
-
-console.log(calculateQueryMatrix(embeddingMatrix, W_Q_1layer, 8, 16))
-
+const W_Q_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_Q_1layer, 8, 16)
+const W_K_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_K_1layer, 8, 16)
+console.log(calculateAttentionMatrix(W_Q_1Att, W_K_1Att))
 
 const useStyles = createUseStyles({
     page: {

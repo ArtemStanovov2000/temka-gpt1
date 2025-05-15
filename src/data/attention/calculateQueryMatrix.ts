@@ -1,4 +1,4 @@
-export const calculateQueryMatrix = (embeddings: number[][], matrix: number[][], start: number, end: number) => {
+export const calculateOneHeadW_QKV_Matrix = (embeddings: number[][], matrix: number[][], start: number, end: number) => {
     const headMatrix: number[][] = []
     for (let i = start; i < end; i++) {
         headMatrix.push(matrix[i])
