@@ -11,10 +11,11 @@ import { W_K_1layer } from "./data/matrix/layer_1/W_K_1layer";
 import { calculateOneHeadW_QKV_Matrix } from "./data/attention/calculateQueryMatrix";
 import { transposeMatrix } from "./data/attention/transposeMatrix";
 import { calculateAttentionMatrix } from "./data/attention/calculateAttentionMatrix";
+import { selfAttention } from "./data/attention/selfAttention";
 
-const W_Q_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_Q_1layer, 8, 16)
-const W_K_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_K_1layer, 8, 16)
-console.log(JSON.stringify(new Array(128).fill(0)))
+//const W_Q_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_Q_1layer, 8, 16)
+//const W_K_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_K_1layer, 8, 16)
+console.log(selfAttention())
 
 const useStyles = createUseStyles({
     page: {
