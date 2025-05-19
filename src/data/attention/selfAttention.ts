@@ -5,8 +5,8 @@ import { W_Q_1layer } from "../matrix/layer_1/W_Q_1layer"
 import { W_K_1layer } from "../matrix/layer_1/W_K_1layer"
 import { W_V_1layer } from "../matrix/layer_1/W_V_1layer"
 
-export const selfAttention = (emb?: number[][], matrixQ?: number[][], matrixK?: number[][], matrixV?: number[][], gamma?: number[], beta?: number[]) => {
-    //const normEmb = layerNorm(emb, gamma, beta) /
+export const selfAttention = (emb: number[][], gamma: number[], beta: number[], matrixQ?: number[][], matrixK?: number[][], matrixV?: number[][]) => {
+    const normEmb = layerNorm(emb, gamma, beta)
 
     const headAttention1Query = new Worker(new URL("./worker.ts", import.meta.url))
     const headAttention1Key = new Worker(new URL("./worker.ts", import.meta.url))

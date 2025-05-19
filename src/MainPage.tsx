@@ -1,9 +1,5 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
-import { tokenizationText } from "./utils/tokenizator";
-import { cleaningText } from "./utils/cleanSymbol";
-import { splitText } from "./utils/splitText";
-import { add_ } from "./utils/removeDuplicateWords";
 import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
 import { positionMatrix } from "./data/matrix/positionMatrix";
 import { W_Q_1layer } from "./data/matrix/layer_1/W_Q_1layer";
@@ -12,10 +8,11 @@ import { calculateOneHeadW_QKV_Matrix } from "./data/attention/calculateQueryMat
 import { transposeMatrix } from "./data/attention/transposeMatrix";
 import { calculateAttentionMatrix } from "./data/attention/calculateAttentionMatrix";
 import { selfAttention } from "./data/attention/selfAttention";
+import { createToken } from "./data/createToken";
 
 //const W_Q_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_Q_1layer, 8, 16)
 //const W_K_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_K_1layer, 8, 16)
-console.log(selfAttention())
+//console.log(selfAttention())
 
 const useStyles = createUseStyles({
     page: {
@@ -63,7 +60,7 @@ export const MainPage: FC = () => {
 
     const postText = () => {
         setText(text.toLowerCase())
-        console.log(JSON.stringify(add_(splitText(cleaningText(text)))))
+        console.log(createToken(text))
     }
 
     return (

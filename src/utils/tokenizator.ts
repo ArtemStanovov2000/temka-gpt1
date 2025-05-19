@@ -63,6 +63,8 @@ export const tokenizationText = (text: string) => {
     tokensArr.push(replaceCodeByTokenIndex(tokensCodeArr[i]))
   }
 
+  tokensArr.pop()
+
   return tokensArr
 }
 
