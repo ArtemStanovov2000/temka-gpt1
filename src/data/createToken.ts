@@ -8,7 +8,7 @@ import { W_Q_1layer } from "./matrix/layer_1/W_Q_1layer"
 import { W_K_1layer } from "./matrix/layer_1/W_K_1layer"
 import { W_V_1layer } from "./matrix/layer_1/W_V_1layer"
 
-export const createToken = (text: string) => {
+export const createToken = async (text: string) => {
     // Токенизируем текст
     const tokens = tokenizationText(text)
 
@@ -26,5 +26,5 @@ export const createToken = (text: string) => {
     // Сложение эмбеддингов с матрицей позиций
     calculatePosition(embeddings)
 
-    return selfAttention(embeddings, gamma1layerFirst, beta1layerFirst, W_Q_1layer, W_K_1layer, W_V_1layer)
+    return await selfAttention(embeddings, gamma1layerFirst, beta1layerFirst, W_Q_1layer, W_K_1layer, W_V_1layer)
 }
