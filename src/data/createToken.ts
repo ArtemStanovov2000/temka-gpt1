@@ -1,6 +1,12 @@
 import { tokenizationText } from "../utils/tokenizator"
 import { embeddingMatrix } from "./matrix/embeddingMatrix"
 import { calculatePosition } from "./attention/calculatePosition"
+import { selfAttention } from "./attention/selfAttention"
+import { gamma1layerFirst } from "./matrix/layer_1/gamma1layerFirst"
+import { beta1layerFirst } from "./matrix/layer_1/beta1layerSecond"
+import { W_Q_1layer } from "./matrix/layer_1/W_Q_1layer"
+import { W_K_1layer } from "./matrix/layer_1/W_K_1layer"
+import { W_V_1layer } from "./matrix/layer_1/W_V_1layer"
 
 export const createToken = (text: string) => {
     // Токенизируем текст
@@ -20,5 +26,5 @@ export const createToken = (text: string) => {
     // Сложение эмбеддингов с матрицей позиций
     calculatePosition(embeddings)
 
-    return embeddings
+    return selfAttention(embeddings, gamma1layerFirst, beta1layerFirst, W_Q_1layer, W_K_1layer, W_V_1layer)
 }
