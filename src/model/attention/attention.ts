@@ -1,6 +1,7 @@
 import { layerNorm } from "../../utils/mathematicalOperations/layerNorn"
 import { calculateAttentionMatrix } from "./calculateAttentionMatrix"
 import { calculateOneHeadW_QKV_Matrix } from "./calculateQueryMatrix"
+import { calculateValueMatrix } from "./calculateValueMatrix"
 
 export const attention = (embeddings: number[][], gammaFirst: number[], betaFirst: number[], gammaSecond: number[], betaSecond: number[], W_q: number[][], W_k: number[][], W_v: number[][]) => {
     const embeddingsNorm = layerNorm(embeddings, gammaFirst, betaFirst)
@@ -11,10 +12,10 @@ export const attention = (embeddings: number[][], gammaFirst: number[], betaFirs
 
     // Применить маскирование
     const attentionMatrix = calculateAttentionMatrix(W_QMatrix, W_KMatrix)
-    console.log(attentionMatrix)
-    // Вычисляем внимание умножая матрицу W_q на W_k
-    // Умножаем на матрицу W_v возвращаем исходную размерность
+    const valueMatrix = calculateValueMatrix(attentionMatrix, W_VMatrix)
 
-    // Нормализация
+    const newEmbeddingsNorm = layerNorm(valueMatrix, gammaSecond, betaSecond)
+    console.log(newEmbeddingsNorm)
+
     // Полносвязный слой
 }
