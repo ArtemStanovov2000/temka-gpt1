@@ -20,5 +20,5 @@ export const textPreparation = (text: string) => {
     // Сложение эмбеддингов с матрицей позиций
     calculatePosition(embeddings)
     
-    return embeddings
+    return {embeddings: embeddings, length: tokens.length}
 }

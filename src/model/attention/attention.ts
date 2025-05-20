@@ -3,7 +3,7 @@ import { calculateAttentionMatrix } from "./calculateAttentionMatrix"
 import { calculateOneHeadW_QKV_Matrix } from "./calculateQueryMatrix"
 import { calculateValueMatrix } from "./calculateValueMatrix"
 
-export const attention = (embeddings: number[][], gammaFirst: number[], betaFirst: number[], gammaSecond: number[], betaSecond: number[], W_q: number[][], W_k: number[][], W_v: number[][]) => {
+export const attention = (embeddings: number[][], gammaFirst: number[], betaFirst: number[], gammaSecond: number[], betaSecond: number[], W_q: number[][], W_k: number[][], W_v: number[][], length: number) => {
     const embeddingsNorm = layerNorm(embeddings, gammaFirst, betaFirst)
 
     const W_QMatrix = calculateOneHeadW_QKV_Matrix(embeddingsNorm, W_q, 0, 128)
@@ -11,7 +11,7 @@ export const attention = (embeddings: number[][], gammaFirst: number[], betaFirs
     const W_VMatrix = calculateOneHeadW_QKV_Matrix(embeddingsNorm, W_v, 0, 128)
 
     // Применить маскирование
-    const attentionMatrix = calculateAttentionMatrix(W_QMatrix, W_KMatrix)
+    const attentionMatrix = calculateAttentionMatrix(W_QMatrix, W_KMatrix, length)
     const valueMatrix = calculateValueMatrix(attentionMatrix, W_VMatrix)
 
     const newEmbeddingsNorm = layerNorm(valueMatrix, gammaSecond, betaSecond)

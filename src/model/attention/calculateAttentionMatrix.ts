@@ -4,7 +4,7 @@ import { mask } from "../../utils/mathematicalOperations/mask";
 import { softmax } from "../../utils/mathematicalOperations/sotmax";
 
 // Рассчет внимания путем умножения матрицы Q на матрицу K
-export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][]) => {
+export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][], length: number) => {
     // Транспонируем матрицу К
     const matrixKTranspose = transposeMatrix(matrixK)
 
@@ -26,9 +26,17 @@ export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][
     for (let i = 0; i < config.maxLength; i++) {
         for (let j = 0; j < config.maxLength; j++) {
             attention[i][j] /= scaleFactor;
-            attention[i][j] += mask[i][j]
+            attention[i][j] += mask[i][j] // Маскрирование
         }
     }
+
+    for (let i = 5; i < config.maxLength; i++) {
+        for (let j = 0; j < config.maxLength; j++) {
+            attention[i][j] = Infinity
+        }
+    }
+
+    console.log(attention)
 
     // Применяем softmax к каждому из эмбедднгу
     for (let i = 0; i < attention.length; i++) {

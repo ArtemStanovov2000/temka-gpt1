@@ -10,5 +10,5 @@ import { W_V_1layer } from "../data/matrix/layer_1/W_V_1layer"
 
 export const createToken = (text: string) => {
     const initialEmb = textPreparation(text)
-    attention(initialEmb, gamma1layerFirst, beta1layerFirst, gamma1layerSecond, beta1layerSecond, W_Q_1layer, W_K_1layer, W_V_1layer)
+    attention(initialEmb.embeddings, gamma1layerFirst, beta1layerFirst, gamma1layerSecond, beta1layerSecond, W_Q_1layer, W_K_1layer, W_V_1layer, initialEmb.length)
 }
