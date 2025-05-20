@@ -1,18 +1,6 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
-import { embeddingMatrix } from "./data/matrix/embeddingMatrix";
-import { positionMatrix } from "./data/matrix/positionMatrix";
-import { W_Q_1layer } from "./data/matrix/layer_1/W_Q_1layer";
-import { W_K_1layer } from "./data/matrix/layer_1/W_K_1layer";
-import { calculateOneHeadW_QKV_Matrix } from "./data/attention/calculateQueryMatrix";
-import { transposeMatrix } from "./data/attention/transposeMatrix";
-import { calculateAttentionMatrix } from "./data/attention/calculateAttentionMatrix";
-import { selfAttention } from "./data/attention/selfAttention";
-import { createToken } from "./data/createToken";
-
-//const W_Q_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_Q_1layer, 8, 16)
-//const W_K_1Att = calculateOneHeadW_QKV_Matrix(embeddingMatrix, W_K_1layer, 8, 16)
-//console.log(selfAttention())
+import { createToken } from "./model/createToken";
 
 const useStyles = createUseStyles({
     page: {

@@ -8,6 +8,7 @@ const reverseArray = (array: string[]) => {
     return reverseArray
 }
 
+// Убирает подстроку с конца строки в массиве строк
 export const cleanEnding = (array: string[]) => {
     const reversingArray: string[] = reverseArray(array)
     const listEndingReverse: string[] = reverseArray(listEnding)
@@ -29,6 +30,7 @@ export const cleanEnding = (array: string[]) => {
     return reverseArray(cleaningArray)
 }
 
+// Убирает подстроку с начала строки в массиве строк
 export const cleanPrefix = (array: string[]) => {
     const reversingArray: string[] = array
     const listEndingReverse: string[] = listEnding

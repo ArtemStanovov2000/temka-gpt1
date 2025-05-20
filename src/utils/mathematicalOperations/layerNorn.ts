@@ -1,3 +1,4 @@
+// Нормализация эмбеддинга, нормализует исходя из среднеквадратичной диспрерсии для стабилизации данных
 export const layerNorm = (emb: number[][], gamma: number[], beta: number[], epsilon = 1e-5) => {
     
     const normalized = [];

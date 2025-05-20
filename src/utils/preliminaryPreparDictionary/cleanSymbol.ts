@@ -1,5 +1,5 @@
 export const cleanSymbol = (symbol: string) => {
-    return symbol.replace(/[^а-яё]/gi, "_");
+    return symbol.replace(/[^а-яё]/gi, "_"); // Очищает все кроме букв русского алфавита
 }
 
 export const cleaningText = (text: string) => {

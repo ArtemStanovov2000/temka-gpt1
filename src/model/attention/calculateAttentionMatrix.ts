@@ -1,12 +1,15 @@
-import { transposeMatrix } from "./transposeMatrix";
-import { config } from "../config";
-import { mask } from "./mask";
-import { softmax } from "./sotmax";
+import { transposeMatrix } from "../../utils/mathematicalOperations/transposeMatrix";
+import { config } from "../../utils/config/config";
+import { mask } from "../../utils/mathematicalOperations/mask";
+import { softmax } from "../../utils/mathematicalOperations/sotmax";
 
+// Рассчет внимания путем умножения матрицы Q на матрицу K
 export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][]) => {
+    // Транспонируем матрицу К
     const matrixKTranspose = transposeMatrix(matrixK)
 
-    const attention = new Array(config.maxLength);
+    // Умножаем матрицы
+    const attention: number[][] = new Array(config.maxLength);
     for (let i = 0; i < config.maxLength; i++) {
         attention[i] = new Array(config.maxLength);
         for (let j = 0; j < config.maxLength; j++) {
@@ -18,7 +21,7 @@ export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][
         }
     }
 
-    // Масштабирование
+    // Делим на квадрат ширины матрицы К
     const scaleFactor = Math.sqrt(matrixKTranspose.length);
     for (let i = 0; i < config.maxLength; i++) {
         for (let j = 0; j < config.maxLength; j++) {
@@ -27,6 +30,7 @@ export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][
         }
     }
 
+    // Применяем softmax к каждому из эмбедднгу
     for (let i = 0; i < attention.length; i++) {
         attention[i] = softmax(attention[i])
     }

@@ -1,3 +1,4 @@
+// Удаляет дубликаты строк в массиве, но не добавляет "_"
 export const removeDuplicateWordsWithout_ = (textArr: string[]) => {
     const nonDuplicate: string[] = []
     for (let i = 0; i < textArr.length; i++) {
@@ -8,6 +9,7 @@ export const removeDuplicateWordsWithout_ = (textArr: string[]) => {
     return nonDuplicate
 }
 
+// Добавляет "_"
 export const add_ = (textArr: string[]) => {
     for (let i = 0; i < textArr.length; i++) {
         if(!textArr[i].startsWith("_")) {

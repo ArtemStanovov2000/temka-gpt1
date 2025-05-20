@@ -1,3 +1,4 @@
+// Разделяет текст на слова
 export const splitText = (text: string) => {
     const textArr = text.split("_")
     const valueTrueOnly = []
