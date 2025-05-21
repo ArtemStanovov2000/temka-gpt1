@@ -1,6 +1,9 @@
 import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
 import { createToken } from "./model/createToken";
+import { GELU } from "./model/FFN/Gelu";
+
+console.log(GELU(1))
 
 const useStyles = createUseStyles({
     page: {
