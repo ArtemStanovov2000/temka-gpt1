@@ -49,13 +49,14 @@ export const MainPage: FC = () => {
     const postText = () => {
         setText(text.toLowerCase())
         console.log(createToken(text))
+        setText("")
     }
 
     return (
         <div className={classes.page}>
             <div className={classes.inputBox}>
                 <input onInput={inputText} value={text} placeholder="text" className={classes.input} />
-                <button onClick={postText} className={classes.button}>Ввод</button>
+                <button onClick={postText} value={text} className={classes.button}>Ввод</button>
             </div>
             <p>{text}</p>
         </div>

@@ -30,18 +30,18 @@ export const calculateAttentionMatrix = (matrixQ: number[][], matrixK: number[][
         }
     }
 
-    for (let i = 5; i < config.maxLength; i++) {
-        for (let j = 0; j < config.maxLength; j++) {
-            attention[i][j] = Infinity
-        }
-    }
-
-    console.log(attention)
-
     // Применяем softmax к каждому из эмбедднгу
     for (let i = 0; i < attention.length; i++) {
         attention[i] = softmax(attention[i])
     }
+
+    // Маскируем пустые токены
+    for (let i = length; i < config.maxLength; i++) {
+        for (let j = 0; j < config.maxLength; j++) {
+            attention[i][j] = 0
+        }
+    }
+
 
     return attention
 }

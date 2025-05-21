@@ -16,9 +16,9 @@ export const textPreparation = (text: string) => {
     for (let i = tokens.length; i < 512; i++) {
         embeddings.push(new Array(128).fill(0))
     }
-
-    // Сложение эмбеддингов с матрицей позиций
-    calculatePosition(embeddings)
     
-    return {embeddings: embeddings, length: tokens.length}
+    // Сложение эмбеддингов с матрицей позиций
+    const positionEmb = calculatePosition(embeddings)
+    
+    return {embeddings: positionEmb, length: tokens.length}
 }
