@@ -2,6 +2,8 @@ import { FC, useState } from "react"
 import { createUseStyles } from "react-jss"
 import { createToken } from "./model/createToken";
 
+console.log(JSON.stringify(new Array(512).fill(Math.random() * 0.02 - 0.02)))
+
 const useStyles = createUseStyles({
     page: {
         backgroundColor: "#1E1E1E",
