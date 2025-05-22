@@ -66,9 +66,6 @@ export const tokenizationText = (text: string) => {
   tokensArr.pop()
   tokensArr.pop()
 
-  console.log(tokensArr)
-  console.log(vocab[2183])
-
   return tokensArr
 }
 
